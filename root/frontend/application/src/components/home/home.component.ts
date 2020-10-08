@@ -14,22 +14,8 @@ public random;
 submitted = false;
 
 click(){
-const data={};
-
-  this.sampleService.create(data)
-       .subscribe(
-         response =>{
-         console.log(response);
-         this.random=Math.floor((Math.random()*1000000)+1);
-         console.log(this.random);
-         this.submitted=true;
-        },
-        error => {
-          console.log(error);
-        });
+  this.sampleService.create(Math.random()*1000000).subscribe();
 }
-
-
   ngOnInit(): void {
   }
 

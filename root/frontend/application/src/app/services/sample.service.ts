@@ -6,11 +6,8 @@ const baseurl="http://localhost:2020/click";
   providedIn: 'root'
 })
 export class SampleService {
-
   constructor(private http:HttpClient) { }
-
   create(data: any | null){
-    console.log("hi");
     return this.http.post(baseurl,data);
   }
 }
