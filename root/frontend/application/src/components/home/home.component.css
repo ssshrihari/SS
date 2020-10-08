@@ -1,0 +1,15 @@
+h1{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+img{
+    width: 35px;
+}
+
+button{
+    background-color: rgb(92, 92, 206);
+    color: white;
+}
+
+button:hover{
+    background-color: rgb(24, 23, 23);
+}
