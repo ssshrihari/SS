@@ -6,14 +6,15 @@ img{
 }
 
 button{
-    background-color: rgb(92, 92, 206);
-    color: white;
+    background-color: rgb(24, 23, 23);
+    color: rgb(45, 45, 238);
 }
 
 button:hover{
-    background-color: rgb(24, 23, 23);
+    background-color: rgb(92, 92, 206);
+    color: white;
+    
 }
 div{
-    padding: 20px;
-    align-content: center;
+    padding: 60px;
 }
