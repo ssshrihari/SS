@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
 
+
+
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -18,9 +20,17 @@ export class SignInComponent implements OnInit {
   }
 
   login(){
+    
+
     this.userService.signin(this.user)
       .subscribe(data=>{
+        console.log(data);
+        var status=JSON.stringify(data);
+        console.log(status);
+        var keys=Object.keys(status);
+        console.log(keys);
         this.router.navigate(['/dashboard']);
+     
         }
       )
   }
