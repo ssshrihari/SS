@@ -18,7 +18,7 @@ export class SignInComponent implements OnInit {
   }
 
   login(){
-    this.userService.login(this.user)
+    this.userService.signin(this.user)
       .subscribe(data=>{
         this.router.navigate(['/dashboard']);
         }

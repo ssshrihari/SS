@@ -14,17 +14,17 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
   
-  private baseUrl = 'http://localhost:2020/click';
+  private baseUrl = 'http://localhost:2020';
 
   constructor( private http:HttpClient) { 
     
   }
 
-  createUser(user: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}`, user);
+  signup(user: Object): Observable<Object> {
+    return this.http.post(`${this.baseUrl}`+'/signup', user);
   }
 
-  login(user:Object):Observable<object>{
-    return this.http.post(`${this.baseUrl}`, user);
+  signin(user:Object):Observable<object>{
+    return this.http.post(`${this.baseUrl}`+'/signin', user);
   }
 }

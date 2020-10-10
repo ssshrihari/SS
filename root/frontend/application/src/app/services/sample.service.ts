@@ -11,7 +11,4 @@ export class SampleService {
     return this.http.post(baseurl,data);
   }
 
-  post(data:any|null){
-    return this.http.post(baseurl,data);
-  }
 }

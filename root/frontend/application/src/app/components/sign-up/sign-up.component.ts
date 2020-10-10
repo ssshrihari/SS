@@ -20,11 +20,9 @@ export class SignUpComponent implements OnInit {
     this.user = new User();
   }
 
-
-
   save() {
     this.userService
-    .createUser(this.user).subscribe(data => {
+    .signup(this.user).subscribe(data => {
       console.log(data)
       this.user = new User();
       this.gotoList();
