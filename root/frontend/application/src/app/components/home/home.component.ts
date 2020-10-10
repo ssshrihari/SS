@@ -15,20 +15,15 @@ export class HomeComponent implements OnInit {
     l:Math.random()*1000000,
     k:Math.random()*1000000
   };
-  p;
-
-
-  
-  
-
+  // p;
   
 constructor(private sampleService:SampleService){}
 
 click(){
-  this.sampleService.create(Math.random()*1000000).subscribe();
-  this.p=JSON.stringify(this.r);
-  console.log(this.p);
-  this.sampleService.post(this.p);
+  this.sampleService.create(JSON.stringify(this.r)).subscribe();
+  // this.p=JSON.stringify(this.r);
+  // console.log(this.p);
+  // this.sampleService.post(this.p);
 }
   ngOnInit(): void {
   }
