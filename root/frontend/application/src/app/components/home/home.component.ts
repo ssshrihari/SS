@@ -9,12 +9,26 @@ import { SampleService } from 'src/app/services/sample.service'
 })
 export class HomeComponent implements OnInit {
 
+
+  r={
+    s:Math.floor(Math.random()*1000000),
+    l:Math.random()*1000000,
+    k:Math.random()*1000000
+  };
+  p;
+
+
+  
+  
+
+  
 constructor(private sampleService:SampleService){}
-public random;
-submitted = false;
 
 click(){
   this.sampleService.create(Math.random()*1000000).subscribe();
+  this.p=JSON.stringify(this.r);
+  console.log(this.p);
+  this.sampleService.post(this.p);
 }
   ngOnInit(): void {
   }

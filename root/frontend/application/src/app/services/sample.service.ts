@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 const baseurl="http://localhost:2020/click";
 @Injectable({
@@ -8,6 +8,10 @@ const baseurl="http://localhost:2020/click";
 export class SampleService {
   constructor(private http:HttpClient) { }
   create(data: any | null){
+    return this.http.post(baseurl,data);
+  }
+
+  post(data:any|null){
     return this.http.post(baseurl,data);
   }
 }
