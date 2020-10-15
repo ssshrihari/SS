@@ -35,20 +35,20 @@ app.post('/Signin', (req, res) => {
       var dbo = db.db("test");
       dbo.collection("UserTable").find({}, { projection: { email: 1, password: 1 } }).toArray(function (err, result) {
         if (err) throw err;
-      
+
         for (var i = 0; i < result.length; i++) {
           if (obj[keys[index]] == result[i].email) {
-                if (bcrypt.compareSync(obj[keys[indexpass]], result[i].password)) {
-                  res.status(200).send({ "user": "ok" });
-                  flag = 1;
-                }
-           //console.log("i reached"+i)
+            if (bcrypt.compareSync(obj[keys[indexpass]], result[i].password)) {
+              res.status(200).send({ "user": "ok" });
+              flag = 1;
+            }
+            //console.log("i reached"+i)
             if (flag == 1)
               break;
 
           }//if loop ends here email validation
         }//for loop ends here result.length
-      
+
 
         if (flag == 0) {
           res.status(403).send({ "user": "Not ok" });
@@ -101,18 +101,16 @@ app.post('/signup', (req, res) => {
             var dbo = db.db("test");
             for (var i = 0; i < keys.length; i++) {
               if (keys[i] == "password") {
-                bcrypt.genSalt(saltRounds, function (err, salt) {
-                  bcrypt.hash(obj[keys[i]], salt, function (err, hash) {
-                    // Store hash in your password DB.
-                    dbo.collection("UserTable").insertOne(JSON.parse(JSON.stringify(obj)), function (err, res) {
-                      if (err) throw err;
-                      db.close();
+                obj[keys[i]] = bcrypt.hashSync(obj[keys[i]], saltRounds)
+                // Store hash in your password DB.
+                console.log(obj[keys[i]]);
+                dbo.collection("UserTable").insertOne(JSON.parse(JSON.stringify(obj)), function (err, res) {
+                  if (err) throw err;
+                  db.close();
 
-                    });
-                    db.close();
-                    res.status(200).send({ "user": "ok" });
-                  });
                 });
+                db.close();
+                res.status(200).send({ "user": "ok" });
                 break;
               }
             }
