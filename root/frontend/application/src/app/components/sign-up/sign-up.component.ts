@@ -27,7 +27,7 @@ export class SignUpComponent implements OnInit {
       this.user = new User();
       var status=JSON.parse(JSON.stringify(data));
         console.log(status);
-        if(status.user == "Not ok"){
+        if(status.user == "ok"){
         this.router.navigate(['/dashboard']);
        }else{
          console.log("dwed");
