@@ -12,17 +12,10 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class SignInComponent implements OnInit {
 
-  // signinForm:FormGroup;
-  // email:string="";
-  // password:string="";
-
   user: User = new User();
   submitted = false;
   constructor(private userService: UserService, private router: Router) {
-    // this.signinForm = formbuilder.group({
-    //   email:['',[Validators.required,Validators.email]],
-    //   password:['',[Validators.required,Validators.minLength(6)]]
-    // });
+
    }
 
   ngOnInit(): void {
@@ -33,7 +26,6 @@ export class SignInComponent implements OnInit {
 
 
     this.userService.signin(this.user)
-
       .subscribe(data => {
         var status = JSON.parse(JSON.stringify(data));
         console.log(status);
