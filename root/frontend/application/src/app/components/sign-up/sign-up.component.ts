@@ -29,12 +29,9 @@ export class SignUpComponent implements OnInit {
         console.log(status);
         if(status.user == "ok"){
         this.router.navigate(['/dashboard']);
-       }else{
-         console.log("dwed");
-         window.location.reload();
        }
     }, 
-    error => console.log(error));
+    error => window.location.reload());
   }
 
   onSubmit() {

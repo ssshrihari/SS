@@ -28,14 +28,18 @@ export class SignInComponent implements OnInit {
     this.userService.signin(this.user)
       .subscribe(data => {
         var status = JSON.parse(JSON.stringify(data));
-        console.log(status);
         if (status.user == "ok") {
           this.router.navigate(['/dashboard']);
         } else {
           window.location.reload();
         }
-
       }
+      ,
+      (err)=>{
+        window.location.reload();
+        }
+
+
       )
   }
 
