@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { User } from '../model/user';
 import { Observable } from 'rxjs';
+
 // import 'rxjs/add/observable/throw';
 // import 'rxjs/add/observable/map';
 // import 'rxjs/add/observable/throw'
-// // import { Http, Headers, Response, RequestOptions } from '@angular/common/http';
+// import { Http, Headers, Response, RequestOptions } from '@angular/common/http';
 // import { map } from 'rxjs/operators';
 
 
@@ -20,7 +21,7 @@ export class UserService {
     
   }
 
-  signup(user: Object): Observable<Object> {
+  signup(user: Object): Observable<object> {
     return this.http.post(`${this.baseUrl}`+'/signup', user);
   }
 

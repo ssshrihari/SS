@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-const baseurl="http://localhost:2020/click";
+
 @Injectable({
   providedIn: 'root'
 })
 export class SampleService {
+
+  private baseurl="http://localhost:2020";
   constructor(private http:HttpClient) { }
   create(data: any | null){
-    return this.http.post(baseurl,data);
+    return this.http.post(`${this.baseurl}`+'/click',data);
   }
 
 }

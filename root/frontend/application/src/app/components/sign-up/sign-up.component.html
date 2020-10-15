@@ -1,40 +1,78 @@
-
-<div class="container">
+<div class="card card-container">
 
 <h2>Registration</h2>
-<div style="width: 400px;">
-<div [hidden]="submitted" style="width: 400px;">
-  <form (ngSubmit)="onSubmit()">
+
+
+  <form #signupForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="name">Name</label>
-      <input type="text" class="form-control" id="name" required [(ngModel)]="user.name" name="name">
+      <input type="text" class="form-control"  #nameRef='ngModel' pattern="[A-Za-z\s]{3,}" 
+      id="name" required [(ngModel)]="user.name" name="name">
+        <div *ngIf='nameRef.errors && (nameRef.touched || nameRef.dirty)' class="alert alert-danger">
+          <div [hidden]='!nameRef.errors.required'>
+              please enter Name
+          </div>
+          <div [hidden]='!nameRef.errors.pattern'>
+              Name should be only alphabets with more than 3 characters
+          </div>
+      </div>
     </div>
 
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" class="form-control" id="email" required [(ngModel)]="user.email" name="email">
+      <input type="email" class="form-control" #emailRef='ngModel' id="email" required [(ngModel)]="user.email"
+          name="email">
+          <div *ngIf='emailRef.errors && (emailRef.touched || emailRef.dirty)' class="alert alert-danger">
+            <div [hidden]='!emailRef.errors.required'>
+              please enter Email ID
+            </div>
+            <div [hidden]='!emailRef.errors.pattern'>
+              Email ID must be valid.
+            </div>
+          </div>
     </div>
 
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" required [(ngModel)]="user.password" name="password">
+      <input type="password" class="form-control" #passwordRef='ngModel' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          id="password" required [(ngModel)]="user.password" name="password">
+          <div *ngIf='passwordRef.errors && (passwordRef.touched || passwordRef.dirty)' class="alert alert-danger">
+            <div [hidden]='!passwordRef.errors.required'>
+              please enter Password
+            </div>
+          <div *ngIf="passwordRef.errors.pattern"> Must contain at least one number and one uppercase
+            and
+            lowercase letter, and at least 8 or more characters.</div>
+            </div>
     </div>
 
     <div class="form-group">
         <label for="phonenumber">Phonenumber</label>
-        <input type="number" class="form-control" id="phonenumber" required [(ngModel)]="user.phonenumber" name="phonenumber">
+        <input type="tel" class="form-control" #phonenumberRef='ngModel' pattern="[1-9][0-9]{9}" 
+        id="phonenumber" required [(ngModel)]="user.phonenumber"
+          name="phonenumber">
+        <div *ngIf='phonenumberRef.errors && (phonenumberRef.touched || phonenumberRef.dirty)' class="alert alert-danger">
+          <div [hidden]='!phonenumberRef.errors.required'>
+            Please enter phone number.
+          </div>
+          <div [hidden]='!phonenumberRef.errors.pattern'>
+            Phone number must be a 10 digit number.
+          </div>
+        </div>
       </div>
 
     
-    <button type="submit" class="btn btn-primary">Sign-up</button>
-  
+    <button type="submit" [disabled]='signupForm.invalid' class="btn btn-primary">Sign-up</button>
+
+    <hr class="visible">
+
+    <p class="">Already registered? <a href="/signin"> Sign-in</a></p>
   </form>
+ 
+ 
 
-  <p class="py-2">Already registered? <a href="/signin"> Sign-in</a></p>
+
 
 </div>
-</div>
-</div>
 
 
-<!-- <button class="button actionContinue scTrack:unifiedlogin-login-click-next" type="submit" id="btnNext" name="btnNext" value="Next" pa-marked="1">Next</button> -->

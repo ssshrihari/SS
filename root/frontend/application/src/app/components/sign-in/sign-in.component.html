@@ -1,23 +1,45 @@
-<div class="container">
+<div class="card card-container">
+  <div class="col-xs-12">
     <h2>Login</h2>
-    <div [hidden]="submitted" style="width: 400px;">
-      <form (ngSubmit)="login()">
+    
+      <form #signinForm='ngForm' (ngSubmit)="login()">
     
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" required [(ngModel)]="user.email" name="email">
+          <input type="email" class="form-control" #emailRef='ngModel' id="email" required [(ngModel)]="user.email"
+          name="email">
+          <div *ngIf='emailRef.errors && (emailRef.touched || emailRef.dirty)' class="alert alert-danger">
+            <div [hidden]='!emailRef.errors.required'>
+              please enter Email ID
+            </div>
+            <div [hidden]='!emailRef.errors.pattern'>
+              Email ID must be valid.
+            </div>
+          </div>
         </div>
     
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" required [(ngModel)]="user.password" name="password">
+          <input type="password" class="form-control" #passwordRef='ngModel' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          id="password" required [(ngModel)]="user.password" name="password">
+          <div *ngIf='passwordRef.errors && (passwordRef.touched || passwordRef.dirty)' class="alert alert-danger">
+            <div [hidden]='!passwordRef.errors.required'>
+              please enter Password
+            </div>
+          <div *ngIf="passwordRef.errors.pattern"> Must contain at least one number and one uppercase
+            and
+            lowercase letter, and at least 8 or more characters.</div>
+            </div>
         </div>
     
     
-        <button type="submit" class="btn btn-primary">Sign-in</button>
+        <button type="submit" class="btn btn-primary" [disabled]='signinForm.invalid' >Sign-in</button>
+
+        <hr class="visible">
+        <p class="py-2">Don't have an account? <a href="/signup"> Sign-up</a></p>
       </form>
-    </div>
-    <p class="py-2">Don't have an account? <a href="/signup"> Sign-up</a></p>
+    
+     </div>
     </div>
     
     

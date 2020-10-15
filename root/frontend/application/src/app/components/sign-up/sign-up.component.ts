@@ -25,7 +25,14 @@ export class SignUpComponent implements OnInit {
     .signup(this.user).subscribe(data => {
       console.log(data)
       this.user = new User();
-      this.gotoList();
+      var status=JSON.parse(JSON.stringify(data));
+        console.log(status);
+        if(status.user == "Not ok"){
+        this.router.navigate(['/dashboard']);
+       }else{
+         console.log("dwed");
+         window.location.reload();
+       }
     }, 
     error => console.log(error));
   }
